@@ -1,39 +1,50 @@
-'use strict';
+"use strict";
+
+var user = {
+  name: "Omokaro Faith",
+  age: 25,
+  location: "Lagos, Nigeria"
+};
+
+var app = {
+  title: "Indecision App",
+  subtitle: "Put your life in the hands of a computer"
+};
 
 var template = React.createElement(
-  'div',
+  "div",
   null,
   React.createElement(
-    'p',
+    "h2",
     null,
-    'DOES THIS CHANGE?'
+    app.title
   ),
   React.createElement(
-    'h2',
+    "p",
     null,
-    'The React Way'
+    app.subtitle
   )
 );
 
 var templateTwo = React.createElement(
-  'div',
+  "div",
   null,
   React.createElement(
-    'h1',
+    "h1",
     null,
-    ' Omokaro Faith'
+    user.name
   ),
   React.createElement(
-    'p',
+    "p",
     null,
-    ' Age: 25'
+    user.age
   ),
   React.createElement(
-    'p',
+    "p",
     null,
-    ' Location: Nigeria'
+    user.location
   )
 );
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
