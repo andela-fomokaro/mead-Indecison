@@ -14,6 +14,26 @@ var template = React.createElement(
     'The React Way'
   )
 );
+
+var templateTwo = React.createElement(
+  'div',
+  null,
+  React.createElement(
+    'h1',
+    null,
+    ' Omokaro Faith'
+  ),
+  React.createElement(
+    'p',
+    null,
+    ' Age: 25'
+  ),
+  React.createElement(
+    'p',
+    null,
+    ' Location: Nigeria'
+  )
+);
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
