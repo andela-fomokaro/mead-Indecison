@@ -8,7 +8,17 @@ var user = {
 
 var app = {
   title: "Indecision App",
-  subtitle: "Put your life in the hands of a computer"
+  subtitle: "Put your life in the hands of a computer",
+  options: ['One', 'Two']
+};
+
+var getLocation = function getLocation(location) {
+  return location ? React.createElement(
+    "p",
+    null,
+    "Location: ",
+    location
+  ) : "";
 };
 
 var template = React.createElement(
@@ -19,11 +29,12 @@ var template = React.createElement(
     null,
     app.title
   ),
-  React.createElement(
+  app.subtitle && React.createElement(
     "p",
     null,
     app.subtitle
-  )
+  ),
+  app.options.length > 0 ? "Here are your options" : "No options"
 );
 
 var templateTwo = React.createElement(
@@ -37,13 +48,10 @@ var templateTwo = React.createElement(
   React.createElement(
     "p",
     null,
+    "Age: ",
     user.age
   ),
-  React.createElement(
-    "p",
-    null,
-    user.location
-  )
+  getLocation(user.location)
 );
 var appRoot = document.getElementById('app');
 
