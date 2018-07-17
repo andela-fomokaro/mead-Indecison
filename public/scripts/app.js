@@ -1,5 +1,6 @@
 "use strict";
 
+// Working With Arrays
 console.log('app is running');
 var app = {
   title: "Indecision App",
@@ -21,6 +22,12 @@ var onFormSubmit = function onFormSubmit(e) {
 var onRemoveAll = function onRemoveAll() {
   app.options = [];
   renderApp();
+};
+
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
 };
 
 var renderApp = function renderApp() {
@@ -49,8 +56,24 @@ var renderApp = function renderApp() {
     ),
     React.createElement(
       "button",
+      { disabled: !app.options.length, onClick: onMakeDecision },
+      "What should I do?"
+    ),
+    React.createElement(
+      "button",
       { onClick: onRemoveAll },
       "Remove All"
+    ),
+    React.createElement(
+      "ol",
+      null,
+      app.options.map(function (option) {
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       "form",
