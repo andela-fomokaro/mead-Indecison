@@ -5,7 +5,7 @@ class IndecisionApp extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: ["one", "two", "three", "four"]
+      options: []
     }
   }
 
@@ -23,10 +23,18 @@ class IndecisionApp extends React.Component {
     alert(indexOfArray);
   }
 
-  handleAddOption(e) {
-    e.preventDefault();
-    const option = e.target.elements.option.value.trim();
-    option ? alert(option) : "";
+  handleAddOption(option) {
+    if (!option) {
+      return 'Enter valid value to add item';
+    }else if (this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    }
+
+    this.setState( (prevState) => {
+      return {
+        options: prevState.options.concat([option])
+      }
+    })
   }
 
   render () {
@@ -94,14 +102,31 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: undefined
+    };
+    this.handleAddOption = this.handleAddOption.bind(this);
+  }
+  handleAddOption(e) {
+    e.preventDefault();
+    const option = e.target.elements.option.value.trim();
+    const error = this.props.handleAddOption(option);
+    this.setState( (prevState) => {
+      return { error }
+    });
+  }
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleAddOption}>
+        <form onSubmit={this.handleAddOption}>
+         {
+           this.state.error && <p>{this.state.error}</p>
+         }
           <input type="text" name="option" />
           <button>Add option</button>
         </form>
-        <p> AddOption Component Here </p>
       </div>
     )
   }
