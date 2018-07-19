@@ -1,94 +1,63 @@
-"use strict";
+'use strict';
 
-// Working With Arrays
-console.log('app is running');
-var app = {
-  title: "Indecision App",
-  subtitle: "Put your life in the hands of a computer",
-  options: []
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var onFormSubmit = function onFormSubmit(e) {
-  e.preventDefault();
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  var option = e.target.elements.option.value;
-  if (option) {
-    app.options.push(option);
-    e.target.elements.option.value = "";
-    renderApp();
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var VisibilityToggle = function (_React$Component) {
+  _inherits(VisibilityToggle, _React$Component);
+
+  function VisibilityToggle(props) {
+    _classCallCheck(this, VisibilityToggle);
+
+    var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
+
+    _this.toggleDetails = _this.toggleDetails.bind(_this);
+    _this.state = {
+      showDetails: false
+    };
+    return _this;
   }
-};
 
-var onRemoveAll = function onRemoveAll() {
-  app.options = [];
-  renderApp();
-};
-
-var onMakeDecision = function onMakeDecision() {
-  var randomNum = Math.floor(Math.random() * app.options.length);
-  var option = app.options[randomNum];
-  alert(option);
-};
-
-var renderApp = function renderApp() {
-  var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "h1",
-      null,
-      app.title
-    ),
-    app.subtitle && React.createElement(
-      "p",
-      null,
-      app.subtitle
-    ),
-    React.createElement(
-      "p",
-      null,
-      app.options.length > 0 ? "Here are your options" : "No options"
-    ),
-    React.createElement(
-      "p",
-      null,
-      app.options.length
-    ),
-    React.createElement(
-      "button",
-      { disabled: !app.options.length, onClick: onMakeDecision },
-      "What should I do?"
-    ),
-    React.createElement(
-      "button",
-      { onClick: onRemoveAll },
-      "Remove All"
-    ),
-    React.createElement(
-      "ol",
-      null,
-      app.options.map(function (option) {
-        return React.createElement(
-          "li",
-          { key: option },
-          option
-        );
-      })
-    ),
-    React.createElement(
-      "form",
-      { onSubmit: onFormSubmit },
-      React.createElement("input", { type: "text", name: "option" }),
-      React.createElement(
-        "button",
+  _createClass(VisibilityToggle, [{
+    key: 'toggleDetails',
+    value: function toggleDetails() {
+      this.setState(function (prevState) {
+        return {
+          showDetails: !prevState.showDetails
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
         null,
-        "Add Option"
-      )
-    )
-  );
+        React.createElement(
+          'h1',
+          null,
+          'VISIBILITY TOGGLE'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.toggleDetails },
+          !this.state.showDetails ? 'Show details' : 'Hide details'
+        ),
+        this.state.showDetails && React.createElement(
+          'p',
+          null,
+          'Hey. These are some details you can now see!'
+        )
+      );
+    }
+  }]);
 
-  ReactDOM.render(template, appRoot);
-};
+  return VisibilityToggle;
+}(React.Component);
 
-var appRoot = document.getElementById('app');
-renderApp();
+ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById('app'));
