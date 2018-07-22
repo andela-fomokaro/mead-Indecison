@@ -29,9 +29,7 @@ var IndecisionApp = function (_React$Component) {
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
       this.setState(function () {
-        return {
-          options: []
-        };
+        return { options: [] };
       });
     }
   }, {
@@ -166,7 +164,7 @@ var AddOption = function (_React$Component2) {
       e.preventDefault();
       var option = e.target.elements.option.value.trim();
       var error = this.props.handleAddOption(option);
-      this.setState(function (prevState) {
+      this.setState(function () {
         return { error: error };
       });
     }
