@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/andelaeveloper/.nvm/versions/node/v6.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run build-babel
+  /Users/andelaeveloper/.nvm/versions/node/v6.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add wepback-dev-server@2.5.1
 
 PATH: 
   /usr/local/sbin:/Users/andelaeveloper/.nvm/versions/node/v6.11.0/bin:/usr/local/opt/python@2/libexec/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -3545,18 +3545,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
-  Directory: /Users/andelaeveloper/Desktop/react-course-projects/mead-indecision-app
-  Output:
-  
-      at ProcessTermError.Error (native)
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+  Error: https://registry.yarnpkg.com/wepback-dev-server: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:65019:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:132430:22)
       at emitTwo (events.js:106:13)
-      at ChildProcess.emit (events.js:191:7)
-      at maybeClose (internal/child_process.js:891:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+      at Request.emit (events.js:191:7)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133413:10)
+      at emitOne (events.js:96:13)
+      at Request.emit (events.js:188:7)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133333:12)
+      at IncomingMessage.g (events.js:292:16)
+      at emitNone (events.js:91:20)
