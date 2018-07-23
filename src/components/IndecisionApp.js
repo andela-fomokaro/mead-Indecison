@@ -9,27 +9,6 @@ export default class IndecisionApp extends React.Component {
     options: []
   }
 
-  componentDidMount () {
-    try {
-      let options = localStorage.getItem('options');
-      options = JSON.parse(options);
-      if(options) {
-        this.setState( () => ({options}));
-      }
-    } catch (e) {
-      // Do Nothing at all
-    }
-  }
-  componentDidUpdate (prevProps, prevState) {
-    if(prevState !== this.state.options) {
-      const json = JSON.stringify(this.state.options);
-      localStorage.setItem('options', json);
-    }
-  }
-  // fires when your component goes away or unmounts from the screen
-  componentWillUnMount () {
-    console.log(...arguments);
-  }
 
   handleDeleteOptions = () => {
     this.setState( () => ({options: []}));
@@ -59,6 +38,28 @@ export default class IndecisionApp extends React.Component {
     this.setState( (prevState) => ({
         options: prevState.options.concat([option])
     }));
+  }
+
+  componentDidMount () {
+    try {
+      let options = localStorage.getItem('options');
+      options = JSON.parse(options);
+      if(options) {
+        this.setState( () => ({options}));
+      }
+    } catch (e) {
+      // Do Nothing at all
+    }
+  }
+  componentDidUpdate (prevProps, prevState) {
+    if(prevState !== this.state.options) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem('options', json);
+    }
+  }
+  // fires when your component goes away or unmounts from the screen
+  componentWillUnMount () {
+    console.log(...arguments);
   }
 
   render () {
