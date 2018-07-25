@@ -3,16 +3,18 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Header from './Header';
 import Action from './Action';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   }
 
 
   handleDeleteOptions = () => {
     this.setState( () => ({options: []}));
-  }
+  };
 
   handleDeleteSingleOption = (optionToRemove) => {
     this.setState( (prevState) => ({
@@ -20,13 +22,14 @@ export default class IndecisionApp extends React.Component {
           return optionToRemove !== option ? true : false;
         })
     }));
-  }
+  };
 
   handlePick = () => {
     let indexOfArray = Math.floor(Math.random() * this.state.options.length);
     indexOfArray = this.state.options[indexOfArray]
-    alert(indexOfArray);
-  }
+    // alert(indexOfArray);
+    this.setState( () => ({selectedOption: indexOfArray}))
+  };
 
   handleAddOption = (option) => {
     if (!option) {
@@ -38,6 +41,10 @@ export default class IndecisionApp extends React.Component {
     this.setState( (prevState) => ({
         options: prevState.options.concat([option])
     }));
+  };
+
+  handleClearSelectedOption = () => {
+    this.setState( () => ({selectedOption: undefined}))
   }
 
   componentDidMount () {
@@ -51,12 +58,14 @@ export default class IndecisionApp extends React.Component {
       // Do Nothing at all
     }
   }
+
   componentDidUpdate (prevProps, prevState) {
     if(prevState !== this.state.options) {
       const json = JSON.stringify(this.state.options);
       localStorage.setItem('options', json);
     }
   }
+
   // fires when your component goes away or unmounts from the screen
   componentWillUnMount () {
     console.log(...arguments);
@@ -78,6 +87,10 @@ export default class IndecisionApp extends React.Component {
           handleDeleteSingleOption={this.handleDeleteSingleOption}
         />
         <AddOption handleAddOption={this.handleAddOption}/>
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
+        />
       </div>
     )
   }
