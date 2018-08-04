@@ -16,3 +16,9 @@
   font-weight: 500;
   color: $off-white;
 }
+
+@media (min-width: $desktop-breakpoint) {
+  .header {
+    margin-bottom: $xl-size;
+  }
+}
