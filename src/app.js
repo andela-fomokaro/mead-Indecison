@@ -1,7 +1,7 @@
-var template = <div>
-<p>DOES THIS CHANGE?</p>
-<h2>The React Way</h2>
-</div>
-var appRoot = document.getElementById('app');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp';
+import 'normalize.css/normalize.css';
+import '../styles/styles.scss';
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
